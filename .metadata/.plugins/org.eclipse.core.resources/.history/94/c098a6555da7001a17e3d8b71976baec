@@ -40,14 +40,17 @@ public class Program {
 			checkOut = sdf.parse(sc.next()); 
 			
 			// Checa intervalos de data  
-			String error = reservation.updateDates(checkIn, checkOut);
-			if (error != null){
-				System.out.println("Error in reservation: "  + error);
+			Date now = new Date(); //data hora de hoje
+			if (checkIn.before(now) || checkOut.before(now)) {
+				System.out.println("Error in reservation: Reservation dates for update must be future dates");
 			}
+			else if (!checkOut.after(checkIn)) {
+				System.out.println("Error in reservation: Check-out date must be after check-in date");
+			} 
 			else {
 				// atualiza as datas 
 				reservation.updateDates(checkIn, checkOut);
-				System.out.println("Reservation:  + reservation");
+				System.out.println("Reservation: " + reservation);
 			}
 		}
 		sc.close();
