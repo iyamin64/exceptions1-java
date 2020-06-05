@@ -1,0 +1,7 @@
+package entites.enums;
+
+public class Color {
+	BLACK,
+	BLUE,
+	RED;
+}
